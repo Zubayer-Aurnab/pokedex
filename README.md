@@ -1,56 +1,193 @@
-# Welcome to your Expo app 👋
+# Pokédex by Aurnab 🥰
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A glassmorphism Pokédex for Android, iOS and web, built with **Expo (SDK 57)**, **Expo Router** and **TypeScript**. Browse all **1,025 Pokémon**, search and filter by type, flip on Shiny Mode, and open any Pokémon to see its stats, abilities, evolution chain and cry.
 
-## Get started
+Data comes from the free [PokéAPI](https://pokeapi.co/), so no API key or backend is required.
 
-1. Install dependencies
+## Screenshots
 
-   ```bash
-   npm install
-   ```
+<p align="center">
+  <img src="docs/screenshots/home.png" alt="Pokédex home screen with search, type filters and Pokémon cards" width="300" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="docs/screenshots/details.png" alt="Pikachu details screen with artwork, description and stats" width="300" />
+</p>
 
-2. Start the app
+<p align="center"><em>Home screen (left) · Details screen (right)</em></p>
 
-   ```bash
-   npx expo start
-   ```
+## Features
 
-In the output, you'll find options to open the app in a
+- **All 1,025 Pokémon** with infinite scroll (loads 24 at a time)
+- **Live search** by name, number (`25`, `#025`) or type
+- **Type filter chips**: All, Fire, Water, Grass, Electric, and the rest
+- **Type-based colors**: every card is tinted with its main type's color
+- **Shiny Mode ✨**: switches every sprite to its shiny version, with sparkle effects
+- **Details screen** with official artwork, description, height and weight, abilities, animated base stats and a tappable evolution chain
+- **Pokémon cries 🔊** played on demand from the details screen
+- **Glassmorphism UI** with a frosted-glass header, translucent cards and a dark gradient background
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Tech stack
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+| Area | Library |
+| --- | --- |
+| Framework | [Expo SDK 57](https://docs.expo.dev/) + React Native |
+| Navigation | [Expo Router](https://docs.expo.dev/router/introduction/) (file-based routing) |
+| Images | `expo-image` |
+| Audio | `expo-audio` |
+| UI effects | `expo-blur`, `expo-linear-gradient`, `react-native-reanimated` |
+| Language | TypeScript (strict) |
+| Data | [PokéAPI](https://pokeapi.co/) |
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## Run it on your computer (step by step)
+
+### 1. Install the prerequisites
+
+| Tool | Why you need it | Download |
+| --- | --- | --- |
+| **Node.js** (LTS, v20 or newer) | Runs the dev server | [nodejs.org](https://nodejs.org/) |
+| **Git** | Downloads the project | [git-scm.com](https://git-scm.com/downloads) |
+| **Expo Go** app on your phone | Runs the app on your phone without building it | [Android](https://play.google.com/store/apps/details?id=host.exp.exponent) · [iOS](https://apps.apple.com/app/expo-go/id982107779) |
+
+Check that Node and Git are installed:
 
 ```bash
-npm run reset-project
+node -v
+git --version
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+> **Note:** This project uses **Expo SDK 57**. If Expo Go says the project is incompatible, your Expo Go app supports a different SDK version. See [Troubleshooting](#troubleshooting).
 
-### Other setup steps
+### 2. Download the project
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+git clone https://github.com/Zubayer-Aurnab/pokedex.git
+cd pokedex
+```
 
-## Learn more
+Or click **Code → Download ZIP** on GitHub, unzip it, and open a terminal inside the unzipped folder.
 
-To learn more about developing your project with Expo, look at the following resources:
+### 3. Install dependencies
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm install
+```
 
-## Join the community
+This takes a minute or two the first time.
 
-Join our community of developers creating universal apps.
+### 4. Start the development server
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npx expo start
+```
+
+A **QR code** and a menu will appear in your terminal.
+
+### 5. Open the app
+
+Pick whichever option suits you:
+
+- **On your phone (easiest):** make sure your phone and computer are on the **same Wi-Fi network**.
+  - **Android:** open **Expo Go** and tap **Scan QR code**.
+  - **iPhone:** open the **Camera** app and scan the QR code, then tap the banner to open it in Expo Go.
+- **Android emulator:** press `a` in the terminal. Requires [Android Studio](https://docs.expo.dev/workflow/android-studio-emulator/).
+- **iOS simulator (macOS only):** press `i` in the terminal. Requires [Xcode](https://docs.expo.dev/workflow/ios-simulator/).
+- **Web browser:** press `w` in the terminal.
+
+The first load downloads the Pokémon list, so give it a few seconds. 🎉
+
+### Useful terminal shortcuts (while `npx expo start` is running)
+
+| Key | Action |
+| --- | --- |
+| `r` | Reload the app |
+| `m` | Open the developer menu |
+| `j` | Open the debugger |
+| `Ctrl + C` | Stop the server |
+
+---
+
+## Troubleshooting
+
+**The QR code doesn't connect / app keeps loading**
+Your phone and computer must be on the same network. If they are and it still fails (for example on office or university Wi-Fi), use tunnel mode:
+
+```bash
+npx expo start --tunnel
+```
+
+**"Project is incompatible with this version of Expo Go"**
+The Expo Go app supports one SDK version at a time. Either install the Expo Go version that matches **SDK 57** (see [expo.dev/go](https://expo.dev/go)), or use an Android emulator or iOS simulator, where Expo installs the matching Expo Go for you.
+
+**Red error screen or strange cache errors after pulling new changes**
+Clear the cache and restart:
+
+```bash
+npx expo start -c
+```
+
+**`npm install` fails**
+Make sure you're on Node.js LTS (`node -v`), delete `node_modules` and `package-lock.json`, then run `npm install` again.
+
+---
+
+## Build an installable app (optional)
+
+The project is configured for [EAS Build](https://docs.expo.dev/build/introduction/) (see `eas.json`). You need a free [Expo account](https://expo.dev/signup).
+
+```bash
+# Log in
+npx eas-cli@latest login
+
+# Android: installable .apk
+npx eas-cli@latest build --platform android --profile preview
+
+# iOS: .ipa for registered devices (requires a paid Apple Developer account)
+npx eas-cli@latest device:create
+npx eas-cli@latest build --platform ios --profile preview
+
+# iOS Simulator build (no Apple account needed, runs on a Mac only)
+npx eas-cli@latest build --platform ios --profile preview-simulator
+```
+
+When a build finishes, EAS gives you a download link and QR code to install it.
+
+---
+
+## Project structure
+
+```
+src/
+├── app/                    # Screens (Expo Router)
+│   ├── _layout.tsx         # Root stack, theme, Shiny Mode provider
+│   ├── index.tsx           # Home: search, type filters, Pokémon grid
+│   └── pokemon/[id].tsx    # Details screen (opens as a modal)
+├── components/             # Cards, search bar, filters, stat bars, evolution chain…
+├── constants/typeColors.ts # Colors for each Pokémon type
+├── context/shiny-mode.tsx  # Global Shiny Mode state
+├── lib/
+│   ├── pokemon.ts          # PokéAPI requests, caching, helpers
+│   └── cries.ts            # Pokémon cry playback
+└── types/pokemon.ts        # TypeScript types for app data and API responses
+```
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm start` | Start the Expo dev server |
+| `npm run android` | Start and open on Android |
+| `npm run ios` | Start and open on iOS (macOS only) |
+| `npm run web` | Start and open in the browser |
+| `npm run lint` | Lint the project |
+| `npx tsc --noEmit` | Type-check the project |
+
+## Credits
+
+- Pokémon data and sprites: [PokéAPI](https://pokeapi.co/)
+- Pokémon cries: [PokéAPI Cries](https://github.com/PokeAPI/cries) and [Pokémon Showdown](https://play.pokemonshowdown.com/)
+- Pokémon and Pokémon character names are trademarks of Nintendo, Game Freak and The Pokémon Company. This is a fan project for learning purposes.
+
+---
+
+Made with ❤️ by **Aurnab**
